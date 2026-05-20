@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Registro de Personas</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ══════════════ HEADER ══════════════ -->
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="logo">
+        <span class="logo-icon">◈</span>
+        <span class="logo-text">PersonaDB</span>
+      </div>
+      <nav class="header-tabs">
+        <button class="tab-btn active" data-tab="registro">Registrar</button>
+        <button class="tab-btn"        data-tab="lista">Directorio</button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ══════════════ MAIN ══════════════ -->
+  <main class="main-wrap">
+
+    <!-- ─── TAB 1: REGISTRO ─── -->
+    <section class="tab-panel active" id="tab-registro">
+      <div class="panel-header">
+        <h1>Nueva Persona</h1>
+        <p>Completa todos los campos para agregar un registro.</p>
+      </div>
+
+      <div id="form-msg" class="form-msg hidden"></div>
+
+      <form id="form-registro" novalidate>
+        <div class="fields-grid">
+
+          <div class="field">
+            <label for="nombre">Nombre completo</label>
+            <input type="text" id="nombre" name="nombre"
+                   placeholder="Ej. Laura Martínez" maxlength="100" required />
+            <span class="field-error" id="err-nombre"></span>
+          </div>
+
+          <div class="field">
+            <label for="profesion">Profesión</label>
+            <input type="text" id="profesion" name="profesion"
+                   placeholder="Ej. Diseñadora Gráfica" maxlength="100" required />
+            <span class="field-error" id="err-profesion"></span>
+          </div>
+
+          <div class="field field--half">
+            <label for="edad">Edad <em>(años)</em></label>
+            <input type="number" id="edad" name="edad"
+                   placeholder="28" min="1" max="120" required />
+            <span class="field-error" id="err-edad"></span>
+          </div>
+
+          <div class="field field--half">
+            <label for="peso">Peso <em>(kg)</em></label>
+            <input type="number" id="peso" name="peso"
+                   placeholder="62.5" min="0.1" max="500" step="0.1" required />
+            <span class="field-error" id="err-peso"></span>
+          </div>
+
+        </div>
+
+        <button type="submit" class="btn-submit" id="btn-submit">
+          <span class="btn-label">Guardar Registro</span>
+          <span class="btn-spinner hidden"></span>
+        </button>
+      </form>
+    </section>
+
+    <!-- ─── TAB 2: LISTA ─── -->
+    <section class="tab-panel" id="tab-lista">
+      <div class="panel-header">
+        <h1>Directorio</h1>
+        <p>Busca o selecciona una persona para ver su información completa.</p>
+      </div>
+
+      <div class="search-bar">
+        <span class="search-icon">⌕</span>
+        <input type="search" id="buscador"
+               placeholder="Buscar por nombre o profesión…" />
+        <span class="result-count" id="result-count"></span>
+      </div>
+
+      <div id="lista-personas" class="persona-grid">
+        <div class="empty-state">
+          <span class="empty-icon">◈</span>
+          <p>Cargando registros…</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ══════════════ MODAL DETALLE ══════════════ -->
+  <div id="modal-overlay" class="modal-overlay hidden" role="dialog" aria-modal="true">
+    <div class="modal-card">
+      <button class="modal-close" id="modal-close" aria-label="Cerrar">✕</button>
+      <div class="modal-badge">◈</div>
+      <h2 class="modal-nombre" id="modal-nombre">—</h2>
+      <p class="modal-profesion" id="modal-profesion">—</p>
+
+      <div class="modal-stats">
+        <div class="stat">
+          <span class="stat-label">Edad</span>
+          <span class="stat-value" id="modal-edad">—</span>
+          <span class="stat-unit">años</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat">
+          <span class="stat-label">Peso</span>
+          <span class="stat-value" id="modal-peso">—</span>
+          <span class="stat-unit">kg</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat">
+          <span class="stat-label">ID</span>
+          <span class="stat-value" id="modal-id">—</span>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <span class="modal-fecha-label">Registrado el</span>
+        <span class="modal-fecha" id="modal-fecha">—</span>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
